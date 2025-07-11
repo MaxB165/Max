@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Local Service Hub</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body, html {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      font-family: Arial, sans-serif;
+    }
+    .scene {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background-size: cover;
+      background-position: center;
+      transition: opacity 0.8s ease;
+    }
+    #entrance {
+      background-image: url("Entrance.png");
+      cursor: pointer;
+      z-index: 1;
+    }
+    #bar-scene {
+      background-image: url("BarScene.png");
+      display: none;
+      z-index: 2;
+    }
+    .hotspot {
+      position: absolute;
+      cursor: pointer;
+    }
+    .fade-in {
+      display: block;
+      opacity: 0;
+      animation: fadeIn 1s forwards;
+    }
+    @keyframes fadeIn {
+      to {
+        opacity: 1;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div id="entrance" class="scene" onclick="enterHub()"></div>
+  <div id="bar-scene" class="scene">
+    <!-- Hotspots -->
+    <div class="hotspot" style="top:65%; left:3%; width:10%; height:25%;" onclick="goToService('plumbing')"></div>
+    <div class="hotspot" style="top:65%; left:15%; width:10%; height:25%;" onclick="goToService('electrical')"></div>
+    <div class="hotspot" style="top:65%; left:28%; width:10%; height:25%;" onclick="goToService('hvac')"></div>
+    <div class="hotspot" style="top:65%; left:41%; width:10%; height:25%;" onclick="goToService('carpentry')"></div>
+    <div class="hotspot" style="top:65%; left:54%; width:10%; height:25%;" onclick="goToService('mechanics')"></div>
+    <div class="hotspot" style="top:65%; left:67%; width:10%; height:25%;" onclick="goToService('landscaping')"></div>
+    <div class="hotspot" style="top:65%; left:80%; width:10%; height:25%;" onclick="goToService('other')"></div>
+  </div>
+
+  <script>
+    function enterHub() {
+      const entrance = document.getElementById("entrance");
+      const bar = document.getElementById("bar-scene");
+      entrance.style.opacity = 0;
+      setTimeout(() => {
+        entrance.style.display = "none";
+        bar.classList.add("fade-in");
+      }, 800);
+    }
+
+    function goToService(service) {
+      alert("Redirecting to: " + service);
+    }
+  </script>
+</body>
+</html>
